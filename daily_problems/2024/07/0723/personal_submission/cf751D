@@ -1,0 +1,31 @@
+int lowbit(int x)
+{
+	return x&(-x);
+}
+
+void solve()
+{
+	int n,q;
+	cin>>n>>q;
+	while(q--){
+		int w;
+		string s;
+		cin>>w>>s;
+		for(int i=0;i<s.size();i++){
+			int x=lowbit(w);
+			if(s[i]=='U'){
+				if(x*2<n){
+					w-=x;
+					w|=x<<1;
+				}
+			}
+			if(s[i]=='L'){
+				if(x!=1) w-=x/2;  
+			}
+			if(s[i]=='R'){
+				if(x!=1) w+=x/2;
+			}
+		}
+		cout<<w<<endl;
+	}
+}
